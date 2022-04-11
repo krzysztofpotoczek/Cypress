@@ -28,14 +28,15 @@ describe('Otwieranie strony Allegro Snadbox', () => {
 
            it('Should type user and password', () => {               
             
-            cy.wait(3000);         
+                     
             cy.get('#login').type('test');
-            cy.wait(3000); 
+            
             cy.get('#password').type('test');
-            cy.wait(2000); 
+           
            })
 
-           it('Should click login', () => {               
+           it('Should click login', () => {  
+            cy.wait(2000);              
            cy.get('.m7er_56', { timeout: 10000 }).should('be.visible').click(); 
            })
           })
