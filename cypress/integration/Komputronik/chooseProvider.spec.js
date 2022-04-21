@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => {
+describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
@@ -23,6 +23,7 @@ describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => 
         cy.contains('span','Sprawdź', { timeout: 20000 }).should('be.visible').click(); 
         cy.contains('button','Do koszyka', { timeout: 20000 }).should('be.visible').click(); 
         cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 20000 }).should('be.visible').click(); 
+        cy.wait(3000);
         cy.contains('button','Przejdź do koszyka', { timeout: 20000 }).should('be.visible').click();
         cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click(); 
         cy.url().should('include', '/cart');
@@ -31,7 +32,7 @@ describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => 
         cy.get('.checkout-type-wrap > :nth-child(2) > .f-btn').click();
         cy.get('[ktr-click-out="$ctrl.closeView()"] > .form-modern__control > .ng-valid').clear().type('NSA01A');
         cy.get(':nth-child(7) > .f-btn').click();
-        cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').click();
+        cy.get('[ng-if="!$ctrl.isPointSelected(point)"] > .f-btn').click();
         cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').should('have.css', 'background-color', 'rgb(0, 114, 188)');
         cy.get('[ng-if="$ctrl.selectedPoint.point.address.length > 0"]').should('contain','Węgierska 170, 33-300 Nowy Sącz');
     });

@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
-
-
-describe('Otwieranie strony Komputronik i usuwanie przedmiotu ze schowka', () => {
+describe('Logowanie i potwierdzenie zgody na otrzymywanie ofert', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
@@ -15,24 +13,32 @@ describe('Otwieranie strony Komputronik i usuwanie przedmiotu ze schowka', () =>
       cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
     });
 
-   
-    it("Should delete product from clipboard", () => {
+      
+    it("Should logIn and accept consent", () => {
         cy.get('.header__user-account > a > label').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
-        cy.contains('button','Zaloguj się').click();
-        cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click(); 
-        cy.get('.header__user-account > a > label').click();
-        cy.url().should('include', '/customer/account#!');
-        cy.contains('a','Twój schowek').click();
-        cy.url().should('include', '/customer/account#!/clipboard');
-        cy.get('.compact-product > a').should('exist');
-        cy.get('.btn > strong').click();
-        cy.get('.global-alert > span').should('contain','Usunięto produkt ze schowka.');
-        cy.get('.compact-product > a').should('not.exist');
+        cy.contains('button','Zaloguj się').click(); 
+        cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();  
+        cy.get('.header__user-account > a > label').click();  
+        cy.url().should('include', '/customer/account#!/');
+        cy.get('.rodo-menu-label').click();
+        cy.url().should('include', '/customer/account#!/customerConsents');
+        cy.get('.checkbox').click();
+        cy.get('.rodo-actions > span > button').click();
+        cy.get('.global-alert > span').should('contain','Twoje zgody zostały zmienione.');
         cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)');
         cy.get('.global-alert').should('have.css', 'color', 'rgb(62, 142, 28)');
         
     });
   
-});
+
+  
+
+    
+    })
+  
+  
+     
+  
+  

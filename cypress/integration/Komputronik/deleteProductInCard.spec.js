@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => {
+describe('Otwieranie strony Komputronik i usunięcie przedmiotu do koszyka', () => {
   it("Should handle the alerts automatically", () => {
     Cypress.on("uncaught:exception", (err, runnable) => {
       return false;
@@ -21,18 +21,9 @@ describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => 
       cy.contains('button','Zaloguj się').click();
   });
 
-  it("Should handle the alerts automatically", () => {
-      Cypress.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
-     
-      cy.on("window:confirm", (str) => {
-        return false;
-      });
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
-    });
  
-    it("Should add to card", () => {
+    it("Should add product to cart", () => {
+      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();  
       cy.contains('span','Sprawdź', { timeout: 20000 }).should('be.visible').click(); 
       cy.contains('button','Do koszyka', { timeout: 20000 }).should('be.visible').click(); 
       cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 20000 }).should('be.visible').click(); 
@@ -42,33 +33,17 @@ describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => 
 
 
 
-  it("Should handle the alerts automatically", () => {
-      Cypress.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
-     
-      cy.on("window:confirm", (str) => {
-        return false;
-      });
-      cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click();              
-    });
-
-    it("Should check URL", () => {
+    it("Delete product from cart", () => {
+    //  cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click();        
       cy.url().should('include', '/cart');
-        
+      cy.get('.form-default > .cart-table > .cart-table__list').should('exist');
+      cy.get('.cart-table__elem-remove-button > .icon').click({ multiple: true });
+      cy.get('.empty-card > span').should('contain','Koszyk jest pusty');
+      cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
     });
  
     
-  it("Should delete product ", () => {
-    cy.get('.cart-table__elem-remove-button > .icon').click();
-    
-  });
-
-  it("Should check card ", () => {
-    cy.contains('span','Koszyk jest pusty');
-    
-  });
-
+  
 
   
   })

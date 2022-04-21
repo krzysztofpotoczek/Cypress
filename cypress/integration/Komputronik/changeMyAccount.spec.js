@@ -14,13 +14,13 @@ function textGenerator() {
     var text = "";
     var possible = "0123456789";
 
-    for (var i = 0; i < 9; i++)
+    for (var i = 0; i < 8; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
   }
 
-describe('Otwieranie strony Komputronik i logowanie', () => {
+describe('Otwieranie strony Komputronik, logowanie i zmiana szczegółów konta', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
@@ -33,12 +33,6 @@ describe('Otwieranie strony Komputronik i logowanie', () => {
       cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
     });
 
-    
-      
-          
-    
-
-   
     it("Should change account's details", () => {
         cy.get('.header__user-account > a > label').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
@@ -52,10 +46,19 @@ describe('Otwieranie strony Komputronik i logowanie', () => {
         cy.wait(3000);
         cy.get('.col-s360-13 > .row > .form-control').clear().type(textGenerator());
         cy.get('.col-s360-17 > .row > .form-control').clear().type(textGenerator());
-        cy.get('.col-xs-22 > .row > .form-control').clear().type(numberGenerator());
+        cy.get('.col-xs-22 > .row > .form-control').clear().type("5"+numberGenerator());
         cy.contains('button','Zapisz zmiany').click();
         cy.get('.global-alert > span').should('contain','Twoje dane zostały zmienione.');
-        
-    });
+        cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)');
+        cy.get('.global-alert').should('have.css', 'color', 'rgb(62, 142, 28)');
+        cy.get('.col-md-17 > .row > .form-control').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+        cy.get('.col-s360-17 > .row > .form-control').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+        cy.get('.col-s360-13 > .row > .form-control').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+        cy.get('.col-xs-22 > .row > .form-control').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+        cy.get('.col-md-17 > .row > .form-control').should('have.css', 'border-color', 'rgb(116, 195, 84)');
+        cy.get('.col-s360-17 > .row > .form-control').should('have.css', 'border-color', 'rgb(116, 195, 84)');
+        cy.get('.col-s360-13 > .row > .form-control').should('have.css', 'border-color', 'rgb(116, 195, 84)');
+        cy.get('.col-xs-22 > .row > .form-control').should('have.css', 'border-color', 'rgb(116, 195, 84)');
   
+      }); 
 });

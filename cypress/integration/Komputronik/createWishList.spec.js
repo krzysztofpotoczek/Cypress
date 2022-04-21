@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i logowanie', () => {
+describe('Otwieranie strony Komputronik i stworzenie listy życzeń', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;

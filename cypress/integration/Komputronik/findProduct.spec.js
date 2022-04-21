@@ -18,6 +18,7 @@ describe('Wyszuanie produktów', () => {
       
         cy.get('.input-group').type('Xiaomi Redmi 9A 2/32GB');
         cy.get('.btn > .micon').click();
+        cy.url().should('include', '/search/category/1?query=Xiaomi%20Redmi%209A%202%2F32GB');
         cy.get(':nth-child(1) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Xiaomi Redmi 9C 2/32GB szary');
   })  
     })

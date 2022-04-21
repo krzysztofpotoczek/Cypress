@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i logowanie', () => {
+describe('Otwieranie strony Komputronik i usunięcie listy życzeń', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
@@ -13,9 +13,6 @@ describe('Otwieranie strony Komputronik i logowanie', () => {
       cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
     });
 
-    
-      
-          
     
 
    

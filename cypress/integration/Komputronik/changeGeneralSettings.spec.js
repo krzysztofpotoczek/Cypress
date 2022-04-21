@@ -20,7 +20,7 @@ function textGenerator() {
     return text;
   }
 
-describe('Otwieranie strony Komputronik i logowanie', () => {
+describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
