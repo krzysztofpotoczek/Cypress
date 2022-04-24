@@ -21,7 +21,7 @@ describe('Zrezygnowanie z wystawienia opini', () => {
         cy.get('.rv-add-rev').click();
         cy.get('.at-quality-star-over-3').click();
         cy.get('.at-func-star-over-1').click();
-        cy.get('.form-group > .form-control').type('Polecam dla dzieci');        
+        cy.get('.form-group > .form-control').type('Polecam');        
         cy.contains('button', 'Zrezygnuj').click();
         
           })

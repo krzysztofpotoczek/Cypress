@@ -35,7 +35,7 @@ describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', ()
 
    
     it("Should change general settings", () => {
-        cy.get('.header__user-account > a > label').click();
+        cy.get('.header__user-account > a > label', { timeout: 20000 }).should('be.visible').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
         cy.contains('button','Zaloguj się').click();
@@ -49,8 +49,26 @@ describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', ()
         cy.get('.col-xs-10 > .row > .ui-select-container > .selectize-input > .ui-select-match > [ng-hide="$select.isEmpty() || $select.open"]').click();
         cy.contains('span','20').click();
         cy.contains('button','Zapisz zmiany').click();
-        cy.get('.global-alert > span').should('contain','Ustawienia ogólne zostały zmienione.');
+        cy.get('.global-alert > span').should('contain','Ustawienia ogólne zostały zmienione.')
+        .and('have.css', 'color', 'rgb(62, 142, 28)')
+
+        cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)')
+        
+
+        ////////////////////Set Default
+        cy.url().should('include', '/customer/account#!/settings');
+        cy.get('.col-xs-18 > .row > .ui-select-container > .selectize-input > .ui-select-match > [ng-hide="$select.isEmpty() || $select.open"]').click();
+        cy.contains('span','Domyślnie').click();
+        cy.get('.col-xs-10 > .row > .ui-select-container > .selectize-input > .ui-select-match > [ng-hide="$select.isEmpty() || $select.open"]').click();
+        cy.contains('span','10').click();
+        cy.contains('button','Zapisz zmiany').click();
+        cy.get('.global-alert > span').should('contain','Ustawienia ogólne zostały zmienione.')
+        .and('have.css', 'color', 'rgb(62, 142, 28)')
+
+        cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)')
         
     });
+
+ 
   
 });

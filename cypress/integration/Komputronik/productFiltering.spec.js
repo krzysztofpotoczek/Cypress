@@ -7,19 +7,16 @@ describe('Wyszuanie produktów', () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
       });
-      cy.visit("https://www.komputronik.pl/");
+      cy.visit("https://www.komputronik.pl/category/2954/myszki-komputerowe.html");
       //window:confirm is the event which get fired on alert open
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+                  
     });
 
     it('Should check category and subcategory Sprzęt PC', () => { 
-        cy.get('.at-cat-ELEKTRONIKA > a > .name-wrap').click({force: true});
-        cy.url().should('include', '/sprzet-pc.html');
-        cy.get(':nth-child(1) > .category-compact > .category-compact__header > .img-wrap > .ls-is-cached', { timeout: 20000 }).should('be.visible').click();
-        cy.get('.category-compact__links-wrap > [href="/category/2954/myszki-komputerowe.html"]', { timeout: 20000 }).should('be.visible').click({force: true});
+     
         cy.url().should('include', '/myszki-komputerowe.html');
         cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(1) > .form-control', { timeout: 20000 }).should('be.visible').type('300');
         cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(2) > .form-control').type('340');

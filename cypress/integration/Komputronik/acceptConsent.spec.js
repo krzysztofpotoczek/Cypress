@@ -15,7 +15,7 @@ describe('Logowanie i potwierdzenie zgody na otrzymywanie ofert', () => {
 
       
     it("Should logIn and accept consent", () => {
-        cy.get('.header__user-account > a > label').click();
+        cy.get('.header__user-account > a > label', { timeout: 20000 }).should('be.visible').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
         cy.contains('button','Zaloguj się').click(); 

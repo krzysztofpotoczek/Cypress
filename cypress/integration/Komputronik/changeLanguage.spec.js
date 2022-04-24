@@ -25,9 +25,7 @@ describe('Zmiana języka z PL na CZ', () => {
   it('Should change language', () => {   
                       
     cy.get('.active > .flag').click();  
-    cy.contains('span','CZ').click();
-
-  
+    cy.contains('span','CZ').click();  
     })
 
   })
