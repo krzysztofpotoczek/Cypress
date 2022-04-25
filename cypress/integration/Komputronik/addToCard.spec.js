@@ -10,26 +10,36 @@ describe('Otwieranie strony Komputronik i dodanie przedmiotu do koszyka', () => 
       cy.on("window:confirm", (str) => {
         return false;
       });
-     cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+     cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
       
     it("Should logIn", () => {
-        cy.get('.header__user-account > a > label', { timeout: 20000 }).should('be.visible').click();
+        cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
         cy.contains('button','Zaloguj się').click();
     });
+
+    it("Should handle the alerts automatically", () => {
+       cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+    });
  
    
       it("Add to cart ", () => {
-      //  cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click(); 
+       
         cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html");  
-       // cy.contains('span','Sprawdź', { timeout: 20000 }).should('be.visible').click(); 
-        cy.contains('button','Do koszyka', { timeout: 20000 }).should('be.visible').click(); 
-        cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 20000 }).should('be.visible').click(); 
-        cy.contains('button','Przejdź do koszyka', { timeout: 20000 }).should('be.visible').click(); 
-        cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click();  
+       // cy.contains('span','Sprawdź', { timeout: 15000 }).should('be.visible').click(); 
+        cy.contains('button','Do koszyka', { timeout: 15000 }).should('be.visible').click(); 
+        cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 15000 }).should('be.visible').click(); 
+        cy.contains('button','Przejdź do koszyka', { timeout: 15000 }).should('be.visible').click(); 
+      });
+
+        it("Should handle the alerts automatically", () => {
+          cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click();         
+       });
+        
+       it("Check cart ", () => {
         cy.url().should('include', '/cart');
         cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-name > .cart-table__elem-name-title')
         .should('contain','Garett Kids Sweet 2 czarny ')

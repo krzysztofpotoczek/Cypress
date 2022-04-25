@@ -10,7 +10,7 @@ describe('Wyszuanie sklepu na ulicy Węgierskiej 170', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 10000 }).should('be.visible').click();              
+      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
   
     

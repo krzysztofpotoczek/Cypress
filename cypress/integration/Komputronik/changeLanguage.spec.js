@@ -10,7 +10,7 @@ describe('Zmiana języka z PL na CZ', () => {
     cy.on("window:confirm", (str) => {
       return false;
     });
-    cy.get('.webpush-followup-close', { timeout: 10000 }).should('be.visible').click();              
+    cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
   });
 
   

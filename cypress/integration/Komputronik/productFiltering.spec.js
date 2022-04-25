@@ -18,7 +18,7 @@ describe('Wyszuanie produktów', () => {
     it('Should check category and subcategory Sprzęt PC', () => { 
      
         cy.url().should('include', '/myszki-komputerowe.html');
-        cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(1) > .form-control', { timeout: 20000 }).should('be.visible').type('300');
+        cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(1) > .form-control', { timeout: 15000 }).should('be.visible').type('300');
         cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(2) > .form-control').type('340');
         cy.get(':nth-child(3) > .gf-content > .gf-checkbox-list > :nth-child(1) > .checkbox').click();
         cy.get('.at-sort-menu > .selectize-input').click();

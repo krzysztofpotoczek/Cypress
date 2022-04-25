@@ -10,7 +10,7 @@ describe('Otwieranie strony Komputronik i logowanie', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
       

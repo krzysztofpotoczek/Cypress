@@ -10,17 +10,22 @@ describe('Logowanie i potwierdzenie zgody na otrzymywanie ofert', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
       
-    it("Should logIn and accept consent", () => {
-        cy.get('.header__user-account > a > label', { timeout: 20000 }).should('be.visible').click();
+    it("Should logIn", () => {
+        cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
         cy.contains('button','Zaloguj się').click(); 
-        cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();  
-        cy.get('.header__user-account > a > label').click();  
+        
+      });
+    
+
+      it("Should logIn and accept consent", () => { 
+        cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();        
+        cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();  
         cy.url().should('include', '/customer/account#!/');
         cy.get('.rodo-menu-label').click();
         cy.url().should('include', '/customer/account#!/customerConsents');
@@ -29,15 +34,13 @@ describe('Logowanie i potwierdzenie zgody na otrzymywanie ofert', () => {
         cy.get('.global-alert > span').should('contain','Twoje zgody zostały zmienione.');
         cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)');
         cy.get('.global-alert').should('have.css', 'color', 'rgb(62, 142, 28)');
+      });      
         
     });
   
 
   
 
-    
-    })
-  
   
      
   

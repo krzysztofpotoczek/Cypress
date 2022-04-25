@@ -10,22 +10,25 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
       
-    it("Should logIn, add to cart and choose provider", () => {
+    it("Should logIn", () => {
         cy.get('.header__user-account > a > label').click();
         cy.get('#login').type('testcypresspwsz@gmail.com');
         cy.get('#password').type('Testcypress.12345');
         cy.contains('button','Zaloguj się').click(); 
-        cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();    
-        cy.contains('span','Sprawdź', { timeout: 20000 }).should('be.visible').click(); 
-        cy.contains('button','Do koszyka', { timeout: 20000 }).should('be.visible').click(); 
-        cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 20000 }).should('be.visible').click(); 
+      });
+
+        it("Should logIn, add to cart and choose provider", () => {
+        cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();    
+        cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html"); 
+        cy.contains('button','Do koszyka', { timeout: 15000 }).should('be.visible').click(); 
+        cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 15000 }).should('be.visible').click(); 
         cy.wait(3000);
-        cy.contains('button','Przejdź do koszyka', { timeout: 20000 }).should('be.visible').click();
-        cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click(); 
+        cy.contains('button','Przejdź do koszyka', { timeout: 15000 }).should('be.visible').click();
+        cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click(); 
         cy.url().should('include', '/cart');
         cy.contains('a','Przejdź dalej').click();
         cy.url().should('include', '/order/checkout');

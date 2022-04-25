@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i usunięcie przedmiotu do koszyka', () => {
+describe('Otwieranie strony Komputronik i usunięcie przedmiotu z koszyka', () => {
   it("Should handle the alerts automatically", () => {
     Cypress.on("uncaught:exception", (err, runnable) => {
       return false;
@@ -10,7 +10,7 @@ describe('Otwieranie strony Komputronik i usunięcie przedmiotu do koszyka', () 
     cy.on("window:confirm", (str) => {
       return false;
     });
-    cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();              
+    cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
   });
 
     
@@ -21,24 +21,30 @@ describe('Otwieranie strony Komputronik i usunięcie przedmiotu do koszyka', () 
       cy.contains('button','Zaloguj się').click();
   });
 
+  it("Should handle the alerts automatically", () => {
+      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+  });
  
     it("Should add product to cart", () => {
-      cy.get('.webpush-followup-close', { timeout: 20000 }).should('be.visible').click();  
-      cy.contains('span','Sprawdź', { timeout: 20000 }).should('be.visible').click(); 
-      cy.contains('button','Do koszyka', { timeout: 20000 }).should('be.visible').click(); 
-      cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 20000 }).should('be.visible').click(); 
+        
+      cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html");  
+      cy.contains('button','Do koszyka', { timeout: 15000 }).should('be.visible').click(); 
+      cy.contains('button','Nie, dziękuję - chcę kupić tylko produkt', { timeout: 15000 }).should('be.visible').click(); 
       cy.wait(3000);
-      cy.contains('button','Przejdź do koszyka', { timeout: 20000 }).should('be.visible').click(); 
+      cy.contains('button','Przejdź do koszyka', { timeout: 15000 }).should('be.visible').click(); 
   });
 
+  it("Should handle the alerts automatically", () => {
+    cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click();               
+});
 
 
     it("Delete product from cart", () => {
-      cy.get('.chat-bubble-4gHwe12', { timeout: 20000 }).should('be.visible').click();        
+          
       cy.url().should('include', '/cart');
       cy.get('.form-default > .cart-table > .cart-table__list').should('exist');
       cy.get('.cart-table__elem-remove-button > .icon').click();
-      cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 20000 }).should('be.visible').click();
+      cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 15000 }).should('be.visible').click();
       cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
     });
  
