@@ -3,7 +3,7 @@
 describe('Otwieranie strony Komputronik, stworzenie listy życzeń i usunięcie jej', () => {
   const login = (name, password) => { 
     cy.session([name,password], () => {
-     cy.visit("https://www.komputronik.pl/");
+      cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html"); 
      cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
      cy.get('#login').type(name);
      cy.get('#password').type(password);

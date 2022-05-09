@@ -4,7 +4,7 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
 
   const login = (name, password) => { 
     cy.session([name,password], () => {
-     cy.visit("https://www.komputronik.pl/");
+      cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html"); 
      cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
      cy.get('#login').type(name);
      cy.get('#password').type(password);
@@ -27,7 +27,8 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
      
 
         it("Should logIn, add to cart and choose inpost provider", () => {
-          cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html"); 
+          
+         
       login('testcypresspwsz@gmail.com','Testcypress.12345');
           cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html");  
         cy.contains('button','Do koszyka', { timeout: 15000 }).should('be.visible').click(); 
@@ -36,6 +37,7 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
         cy.contains('button','Przejdź do koszyka', { timeout: 15000 }).should('be.visible').click();
         cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click(); 
         cy.url().should('include', '/cart');
+        cy.wait(3000);
         cy.contains('a','Przejdź dalej').click();
         cy.url().should('include', '/order/checkout');
         cy.get('.checkout-type-wrap > :nth-child(2) > .f-btn').click();

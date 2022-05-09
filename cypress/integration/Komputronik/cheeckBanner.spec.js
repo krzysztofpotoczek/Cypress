@@ -38,18 +38,28 @@ describe('Sprawdzanie banerów i elementów', () => {
             .and('have.css', 'width', '1246px')
             .and('have.css', 'height', '327.359375px');
 
-            //day promotion
-            cy.get(':nth-child(2) > .so2-wrap', { timeout: 15000 })
-            .should('be.visible')
-            .and('exist')
-            .and('have.css', 'width', '613px')
-            .and('have.css', 'height', '390px');
+          });
 
-            cy.get(':nth-child(3) > .so2-wrap')
-            .should('exist')
-            .and('have.css', 'width', '613px')
-            .and('have.css', 'height', '390px');
+          it("Main page ", () => {
+           
+            cy.visit("https://www.komputronik.pl/");
+               //day promotion
+               cy.get(':nth-child(2) > .so2-wrap', { timeout: 15000 })
+               .should('be.visible')
+               .and('exist')
+               .and('have.css', 'width', '613px')
+               .and('have.css', 'height', '390px');
+   
+               cy.get(':nth-child(3) > .so2-wrap')
+               .should('exist')
+               .and('have.css', 'width', '613px')
+               .and('have.css', 'height', '390px');
 
+          });
+
+          it("Main page ", () => {
+           
+            cy.visit("https://www.komputronik.pl/");
             //our promotion
             cy.get('.container > .row > :nth-child(1) > a > .lazyloaded')
             .should('exist')
@@ -78,49 +88,100 @@ describe('Sprawdzanie banerów i elementów', () => {
             .and('have.css', 'font-family', '"Open Sans", sans-serif')
             .and('have.css', 'line-height', '21px')
 
-            //new product
-            cy.get('#new-products > .swipe')
-            .should('exist')
-            .and('have.css', 'width', '1266px')
-            .and('have.css', 'height', '377px')
-            .and('have.css', 'font-size', '0px')
-            .and('have.css', 'font-family', '"Open Sans", sans-serif')
-          
-            //choose for you
-            cy.get('[ktr-transclude=""] > .swipe')
-            .should('exist')
-            .and('have.css', 'width', '1266px')
-            .and('have.css', 'height', '404px')
-            .and('have.css', 'font-size', '0px')
-            .and('have.css', 'font-family', '"Open Sans", sans-serif')
+       });
 
-            //description
-            cy.get('.text-box-light')
-            .should('exist')
-            .and('contain','Komputronik to jeden z najbardziej zaufanych sklepów internetowych Polsce.')
-            .and('contain','Posiada w ofercie nie tylko sprzęt komputerowy, ale także RTV i AGD, tablety, laptopy, telefony, smartwatche, spory wybór urządzeń smarthome, foto i video oraz produkty dla domu. Komputronik to idealny stosunek jakości do ceny, ale także usługi dopasowane do nowoczesnego poziomu życia: fachowe doradztwo, raty, leasing, elastyczne możliwości dostawy, ubezpieczenia, a nawet wniesienie i montaż.')
-            .and('have.css', 'width', '1246px')
-            .and('have.css', 'height', '200px')
-            .and('have.css', 'background-color', 'rgb(255, 255, 255)')
-            .and('have.css', 'color', 'rgb(27, 29, 30)')
-            .and('have.css', 'font-size', '14px')
-            .and('have.css', 'font-family', '"Open Sans", sans-serif')
-
-            //contact
-            cy.get('.footer2__infoline')
-            .should('contain','Masz pytania?')
-            .and('exist')
-            .and('contain','Zadzwoń lub napisz')
-            .and('contain','+48616680007')
-            .and('contain','Skontaktuj się')
-            .and('have.css', 'font-weight', '700')
-            .and('have.css', 'color', 'rgb(255, 255, 255)')
-            .and('have.css', 'background-color', 'rgb(40, 45, 49)')
-            .and('have.css', 'font-family', 'OpenSans, sans-serif')
-            .and('have.css', 'width', '1383px')
-            .and('have.css', 'height', '110px')
+       it("Main page ", () => {
+           
+        cy.visit("https://www.komputronik.pl/"); 
+         //new product
+         cy.get('#new-products > .swipe')
+         .should('exist')
+         .and('have.css', 'width', '1266px')
+         .and('have.css', 'height', '377px')
+         .and('have.css', 'font-size', '0px')
+         .and('have.css', 'font-family', '"Open Sans", sans-serif')
+       
+         //choose for you
+         cy.get('[ktr-transclude=""] > .swipe')
+         .should('exist')
+         .and('have.css', 'width', '1266px')
+         .and('have.css', 'height', '404px')
+         .and('have.css', 'font-size', '0px')
+         .and('have.css', 'font-family', '"Open Sans", sans-serif')
+   });
+        
 
 
+   it("Main page ", () => {
+           
+    cy.visit("https://www.komputronik.pl/");     
+     //description
+     cy.get('.text-box-light')
+     .should('exist')
+     .and('contain','Komputronik to jeden z najbardziej zaufanych sklepów internetowych Polsce.')
+     .and('contain','Posiada w ofercie nie tylko sprzęt komputerowy, ale także RTV i AGD, tablety, laptopy, telefony, smartwatche, spory wybór urządzeń smarthome, foto i video oraz produkty dla domu. Komputronik to idealny stosunek jakości do ceny, ale także usługi dopasowane do nowoczesnego poziomu życia: fachowe doradztwo, raty, leasing, elastyczne możliwości dostawy, ubezpieczenia, a nawet wniesienie i montaż.')
+     .and('have.css', 'width', '1246px')
+     .and('have.css', 'height', '200px')
+     .and('have.css', 'background-color', 'rgb(255, 255, 255)')
+     .and('have.css', 'color', 'rgb(27, 29, 30)')
+     .and('have.css', 'font-size', '14px')
+     .and('have.css', 'font-family', '"Open Sans", sans-serif')
+
+     //contact
+     cy.get('.footer2__infoline')
+     .should('contain','Masz pytania?')
+     .and('exist')
+     .and('contain','Zadzwoń lub napisz')
+     .and('contain','+48616680007')
+     .and('contain','Skontaktuj się')
+     .and('have.css', 'font-weight', '700')
+     .and('have.css', 'color', 'rgb(255, 255, 255)')
+     .and('have.css', 'background-color', 'rgb(40, 45, 49)')
+     .and('have.css', 'font-family', 'OpenSans, sans-serif')
+     .and('have.css', 'width', '1383px')
+     .and('have.css', 'height', '110px')
+
+
+});
+   
+it("Main page ", () => {
+           
+  cy.visit("https://www.komputronik.pl/");       
+  //description
+  cy.get('.text-box-light')
+  .should('exist')
+  .and('contain','Komputronik to jeden z najbardziej zaufanych sklepów internetowych Polsce.')
+  .and('contain','Posiada w ofercie nie tylko sprzęt komputerowy, ale także RTV i AGD, tablety, laptopy, telefony, smartwatche, spory wybór urządzeń smarthome, foto i video oraz produkty dla domu. Komputronik to idealny stosunek jakości do ceny, ale także usługi dopasowane do nowoczesnego poziomu życia: fachowe doradztwo, raty, leasing, elastyczne możliwości dostawy, ubezpieczenia, a nawet wniesienie i montaż.')
+  .and('have.css', 'width', '1246px')
+  .and('have.css', 'height', '200px')
+  .and('have.css', 'background-color', 'rgb(255, 255, 255)')
+  .and('have.css', 'color', 'rgb(27, 29, 30)')
+  .and('have.css', 'font-size', '14px')
+  .and('have.css', 'font-family', '"Open Sans", sans-serif')
+
+  //contact
+  cy.get('.footer2__infoline')
+  .should('contain','Masz pytania?')
+  .and('exist')
+  .and('contain','Zadzwoń lub napisz')
+  .and('contain','+48616680007')
+  .and('contain','Skontaktuj się')
+  .and('have.css', 'font-weight', '700')
+  .and('have.css', 'color', 'rgb(255, 255, 255)')
+  .and('have.css', 'background-color', 'rgb(40, 45, 49)')
+  .and('have.css', 'font-family', 'OpenSans, sans-serif')
+  .and('have.css', 'width', '1383px')
+  .and('have.css', 'height', '110px')
+
+
+});
+
+
+            
+it("Main page ", () => {
+           
+
+  cy.visit("https://www.komputronik.pl/");   
             //cooperation
             cy.get('.footer2__right-column')
             .should('contain','Znajdziesz nas na:')
