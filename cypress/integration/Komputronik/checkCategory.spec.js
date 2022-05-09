@@ -10,11 +10,14 @@ describe('Sprawdzenie kategori i podkategroi', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+    //  cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
     it('Should check category and subcategory Sprzęt PC', () => { 
-        cy.get('.at-cat-ELEKTRONIKA > a > .name-wrap').click({force: true});
+      cy.visit("https://www.komputronik.pl/");
+         cy.visit("https://www.komputronik.pl/category/14508/sprzet-pc.html");
+        
+      
         cy.url().should('include', '/sprzet-pc.html');
         cy.get(':nth-child(1) > .category-compact > .category-compact__header > .name > a').should('contain','Peryferia PC');
         cy.get(':nth-child(2) > .category-compact > .category-compact__header > .name > a').should('contain','Części PC');
@@ -26,7 +29,8 @@ describe('Sprawdzenie kategori i podkategroi', () => {
   
     
     it('Should check category and subcategory Laptopy i komputery', () => { 
-        cy.get(':nth-child(1) > .hub-menu__link').click();
+      cy.visit("https://www.komputronik.pl/");
+      cy.visit("https://www.komputronik.pl/category/5803/laptopy-i-komputery.html");
         cy.url().should('include', '/laptopy-i-komputery.html');
         cy.get(':nth-child(1) > .category-compact > .category-compact__header > .name > a').should('contain','Laptopy');
         cy.get(':nth-child(2) > .category-compact > .category-compact__header > .name > a').should('contain','Komputery');
@@ -35,9 +39,10 @@ describe('Sprawdzenie kategori i podkategroi', () => {
         cy.get(':nth-child(5) > .category-compact > .category-compact__header > .name > a').should('contain','Czytniki e-book');
         
   })  
-
+  
   it('Should check category and subcategory Gaming', () => { 
-    cy.get(':nth-child(3) > .hub-menu__link').click();
+    cy.visit("https://www.komputronik.pl/");
+    cy.visit("https://www.komputronik.pl/category/8737/gaming.html");
     cy.url().should('include', '/gaming.html');
     cy.get(':nth-child(1) > .category-compact > .category-compact__header > .name > a').should('contain','Sprzęt gamingowy');
     cy.get(':nth-child(2) > .category-compact > .category-compact__header > .name > a').should('contain','Pokój gracza');

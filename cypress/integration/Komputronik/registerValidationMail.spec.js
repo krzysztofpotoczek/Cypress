@@ -10,22 +10,14 @@ describe('Otwieranie strony Komputronik i sprawdzenie walidacji hasła i reCaptc
     cy.on("window:confirm", (str) => {
       return false;
     });
-    cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();            
+   // cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();            
   });
 
- 
 
-  it("Should open /register", () => {
-    cy.get('.header__user-account > a > label').click();
-    cy.get(':nth-child(3) > .btn3 > strong').click();
-  });
-
-  it("Should check URL", () => {
-    cy.url().should('include', '/register');
-      
-  });
 
   it("Should register and check validation", () => {
+    cy.visit("https://www.komputronik.pl/register");
+    cy.url().should('include', '/register');
     cy.get('.col-lg-10 > .ng-valid-email').type('krzysgmail.com');
     cy.get('.strength-meter-wrap > .form-control').type('Test.12345');
     cy.get('[style="width: 304px; height: 78px;"] > div > iframe').click();

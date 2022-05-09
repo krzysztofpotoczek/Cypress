@@ -1,29 +1,32 @@
 /// <reference types="cypress" />
 
-describe('Otwieranie strony Komputronik i stworzenie listy życzeń', () => {
-    it("Should handle the alerts automatically", () => {
-      Cypress.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
-      cy.visit("https://www.komputronik.pl/");
-      //window:confirm is the event which get fired on alert open
-      cy.on("window:confirm", (str) => {
-        return false;
-      });
-      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+describe('Otwieranie strony Komputronik, stworzenie listy życzeń i usunięcie jej', () => {
+  const login = (name, password) => { 
+    cy.session([name,password], () => {
+     cy.visit("https://www.komputronik.pl/");
+     cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
+     cy.get('#login').type(name);
+     cy.get('#password').type(password);
+     cy.contains('button','Zaloguj się').click(); 
+   })
+   }
+  
+  
+   it("Should handle the alerts automatically", () => {
+    Cypress.on("uncaught:exception", (err, runnable) => {
+      return false;
     });
-
-      
-    it("Should login", () => {
-        cy.get('.header__user-account > a > label').click();
-        cy.get('#login').type('testcypresspwsz@gmail.com');
-        cy.get('#password').type('Testcypress.12345');
-        cy.contains('button','Zaloguj się').click();
-      });
+    cy.visit("https://www.komputronik.pl/");
+    //window:confirm is the event which get fired on alert open
+    cy.on("window:confirm", (str) => {
+      return false;
+    });
+  // cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+  }); 
 
         it("Should create wish list", () => {
-        cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click(); 
-        cy.get('.header__user-account > a > label').click();
+          login('testcypresspwsz@gmail.com','Testcypress.12345');
+          cy.visit("https://www.komputronik.pl/customer/account#!"); 
         cy.url().should('include', '/customer/account#!');
         cy.contains('a','Twoje listy życzeń').click();
         cy.url().should('include', '/customer/account#!/wishlist');
@@ -32,5 +35,15 @@ describe('Otwieranie strony Komputronik i stworzenie listy życzeń', () => {
         cy.get('.col-s360-18 > button.btn2').click(); 
         cy.get('ol > :nth-child(1) > h3').should('contain','Krzys lista')
     });
+
+    it("Should destroy wish list", () => {
+      login('testcypresspwsz@gmail.com','Testcypress.12345');
+      cy.visit("https://www.komputronik.pl/customer/account#!"); 
+      cy.contains('a','Twoje listy życzeń').click();
+      cy.url().should('include', '/customer/account#!/wishlist');
+      cy.contains('button','Usuń listę').click();
+      cy.get('ol > :nth-child(1) > h3').should('not.exist');
+      
+  });
   
 });

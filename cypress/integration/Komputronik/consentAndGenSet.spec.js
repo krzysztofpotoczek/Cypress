@@ -1,26 +1,20 @@
 /// <reference types="cypress" />
 
-function textGenerator() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+describe('Logowanie i potwierdzenie zgody na otrzymywanie ofert', () => {
 
-    for (var i = 0; i < 10; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+const login = (name, password) => { 
+ cy.session([name,password], () => {
+  cy.visit("https://www.komputronik.pl/");
+  cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
+  cy.get('#login').type(name);
+  cy.get('#password').type(password);
+  cy.contains('button','Zaloguj się').click(); 
+})
+}
 
-    return text;
-  }
 
-  function numberGenerator() {
-    var text = "";
-    var possible = "0123456789";
+   
 
-    for (var i = 0; i < 9; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-  }
-
-describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', () => {
     it("Should handle the alerts automatically", () => {
       Cypress.on("uncaught:exception", (err, runnable) => {
         return false;
@@ -30,20 +24,34 @@ describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', ()
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+   // cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
-   
-    it("Should login", () => {
-        cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();
-        cy.get('#login').type('testcypresspwsz@gmail.com');
-        cy.get('#password').type('Testcypress.12345');
-        cy.contains('button','Zaloguj się').click();
-      });
+      
+  
+    
+
+      it("Should logIn and accept consent", () => { 
+     
+        login('testcypresspwsz@gmail.com','Testcypress.12345');
+        cy.visit("https://www.komputronik.pl/");
+        cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();        
+        cy.get('.header__user-account > a > label', { timeout: 15000 }).should('be.visible').click();  
+        cy.url().should('include', '/customer/account#!/');
+        cy.get('.rodo-menu-label').click();
+        cy.url().should('include', '/customer/account#!/customerConsents');
+        cy.get('.checkbox').click();
+        cy.get('.rodo-actions > span > button').click();
+        cy.get('.global-alert > span').should('contain','Twoje zgody zostały zmienione.');
+        cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)');
+        cy.get('.global-alert').should('have.css', 'color', 'rgb(62, 142, 28)');
+      });   
+         
 
       it("Should change general settings", () => {
-       
-        cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click(); 
+        
+        login('testcypresspwsz@gmail.com','Testcypress.12345');
+        cy.visit("https://www.komputronik.pl/customer/account#!/settings");
         cy.get('.header__user-account > a > label').click();
         cy.url().should('include', '/customer/account#!');
         cy.contains('a','Ustawienia ogólne').click();
@@ -72,7 +80,13 @@ describe('Otwieranie strony Komputronik i zmiana ogólnych ustawień konta ', ()
         cy.get('.global-alert').should('have.css', 'background-color', 'rgb(233, 249, 227)')
         
     });
-
- 
+        
+    });
   
-});
+
+  
+
+  
+     
+  
+  

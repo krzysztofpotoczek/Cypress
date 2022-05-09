@@ -10,11 +10,12 @@ describe('Otwieranie strony Komputronik i logowanie', () => {
       cy.on("window:confirm", (str) => {
         return false;
       });
-      cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
+     // cy.get('.webpush-followup-close', { timeout: 15000 }).should('be.visible').click();              
     });
 
       
     it("Should display validation in login form", () => {
+      cy.visit("https://www.komputronik.pl/");
         cy.get('.header__user-account > a > label').click();
         cy.get('#login').type('asd.com');
         cy.get('#password').type('Testcypress.12345');

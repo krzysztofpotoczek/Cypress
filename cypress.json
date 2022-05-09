@@ -1,5 +1,6 @@
 {
     "viewportWidth": 1400,
     "viewportHeight": 900,
-    "reporter": "cypress-mochawesome-reporter"
+    "reporter": "cypress-mochawesome-reporter",
+    "experimentalSessionSupport" : true
   }
