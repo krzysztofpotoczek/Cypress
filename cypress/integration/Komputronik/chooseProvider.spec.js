@@ -75,17 +75,17 @@ it("Should find local store", () => {
 });
   
 
-    // it("Delete product from cart", () => {
+    it("Delete product from cart", () => {
           
-    //   login('testcypresspwsz@gmail.com','Testcypress.12345');
-    // cy.visit("https://www.komputronik.pl/cart");
-    //   cy.url().should('include', '/cart');
-    //   cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click(); 
-    //   cy.get('.form-default > .cart-table > .cart-table__list').should('exist');
-    //   cy.get('.cart-table__elem-remove-button > .icon').click();
-    //   cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 15000 }).should('be.visible').click();
-    //   cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
-    // });
+      login('testcypresspwsz@gmail.com','Testcypress.12345');
+    cy.visit("https://www.komputronik.pl/cart");
+      cy.url().should('include', '/cart');
+      cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click(); 
+      cy.get('.form-default > .cart-table > .cart-table__list').should('exist');
+      cy.get('.cart-table__elem-remove-button > .icon').click();
+      cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 15000 }).should('be.visible').click();
+      cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
+    });
 
     
     })

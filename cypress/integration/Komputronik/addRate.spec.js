@@ -33,8 +33,19 @@ describe('Zrezygnowanie z wystawienia opini', () => {
         cy.get('.at-add-opinion').click();
         cy.get('.at-quality-star-over-3').click();
         cy.get('.at-func-star-over-1').click();
-        cy.get('.form-group > .form-control').type('Polecam');        
-        cy.contains('button', 'Zrezygnuj').click();
+        cy.get('.form-group > .form-control').type('Polecam');
+        cy.get('.wrapper')
+        .should('have.css', 'text-align', 'left')
+        .and('have.css', 'display', 'inline-block')
+        .and('have.css', 'white-space', 'normal')
+        .and('have.css', 'background-color', 'rgb(255, 255, 255)')
+        .and('have.css', 'border-radius', '5px')
+        .and('have.css', 'color', 'rgb(27, 29, 30)')
+        .and('have.css', 'width', '531px')
+        .and('have.css', 'height', '704.59375px')
+       cy.contains('button', 'Zrezygnuj').click();
+      
+       
         
           })
     });

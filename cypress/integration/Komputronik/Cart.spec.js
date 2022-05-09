@@ -103,6 +103,84 @@ describe('Działanie koszyka', () => {
           cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 15000 }).should('be.visible').click();
           cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
         });
+
+
+        it("Check banner", () => {
+          
+          login('testcypresspwsz@gmail.com','Testcypress.12345');
+        cy.visit("https://www.komputronik.pl/cart");
+          cy.url().should('include', '/cart');
+        
+         //contact
+         cy.get('.footer2__infoline')
+         .should('contain','Masz pytania?')
+         .and('exist')
+         .and('contain','Zadzwoń lub napisz')
+         .and('contain','+48616680007')
+         .and('contain','Skontaktuj się')
+         .and('have.css', 'font-weight', '700')
+         .and('have.css', 'color', 'rgb(255, 255, 255)')
+         .and('have.css', 'background-color', 'rgb(40, 45, 49)')
+         .and('have.css', 'font-family', 'OpenSans, sans-serif')
+         .and('have.css', 'width', '1383px')
+         .and('have.css', 'height', '110px')
+
+
+         //cooperation
+         cy.get('.footer2__right-column')
+         .should('contain','Znajdziesz nas na:')
+         .and('exist')
+         .and('contain','Znajdziesz nas na:')
+
+         
+
+         cy.get(':nth-child(1) > .footer2__connect-img-wrap > .tools__img-fit-center')
+         .should('exist')
+         cy.get(':nth-child(1) > a > .f-btn > span')
+         .should('contain','Znajdź sklep')
+         .and('have.css', 'color', 'rgb(0, 114, 188)')
+
+         cy.get(':nth-child(2) > .footer2__connect-img-wrap > .tools__img-fit-center')
+         .should('exist')
+         cy.get(':nth-child(2) > a > .f-btn > span')
+         .should('contain','Dołącz')
+         .and('have.css', 'color', 'rgb(0, 114, 188)')
+
+         cy.get(':nth-child(3) > .footer2__connect-img-wrap > .tools__img-fit-center')
+         .should('exist')
+         cy.get(':nth-child(3) > a > .f-btn > span')
+         .should('contain','Współpracuj')
+         .and('have.css', 'color', 'rgb(0, 114, 188)')
+
+         cy.get(':nth-child(1) > a > .f-btn')
+         .should('have.css', 'width', '145px')
+         .and('have.css', 'height', '40px')
+
+         cy.get(':nth-child(2) > a > .f-btn')
+         .should('have.css', 'width', '145px')
+         .and('have.css', 'height', '40px')
+
+
+         cy.get(':nth-child(3) > a > .f-btn')
+         .should('have.css', 'width', '145px')
+         .and('have.css', 'height', '40px')
+
+
+         cy.get('[href="https://www.facebook.com/komputronik"] > .footer2__social-icon')
+         .should('exist')
+
+         cy.get('[href="https://www.instagram.com/Komputronik/"] > .footer2__social-icon')
+         .should('exist')
+
+         cy.get('[href="https://www.youtube.com/user/KomputronikSA"] > .footer2__social-icon')
+         .should('exist')
+
+         cy.get('[href="https://www.komputronikgaming.pl/"] > .footer2__social-icon')
+         .should('exist')
+         
+
+          
+        });
      
   
   })
