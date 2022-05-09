@@ -26,7 +26,8 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
   }); 
      
 
-        it("Should logIn, add to cart and choose provider", () => {
+        it("Should logIn, add to cart and choose inpost provider", () => {
+          cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html"); 
       login('testcypresspwsz@gmail.com','Testcypress.12345');
           cy.visit("https://www.komputronik.pl/product/722545/garett-kids-sweet-2-czarny.html");  
         cy.contains('button','Do koszyka', { timeout: 15000 }).should('be.visible').click(); 
@@ -44,9 +45,47 @@ describe('Otwieranie strony Komputronik i wybranie paczkomatu', () => {
         cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').should('have.css', 'background-color', 'rgb(0, 114, 188)');
         cy.get('[ng-if="$ctrl.selectedPoint.point.address.length > 0"]').should('contain','Węgierska 170, 33-300 Nowy Sącz');
     });
+
+    it("Should find DHL store", () => {
+     
+  login('testcypresspwsz@gmail.com','Testcypress.12345');
+      cy.visit("https://www.komputronik.pl/order/checkout");  
+      cy.get(':nth-child(3) > .f-btn').click();
+      cy.get(':nth-child(4) > .form-modern__control > .ng-pristine').type("Nowy Sącz Węgierska");
+      cy.contains('button','Pokaż').click(); 
+      cy.contains('a','Wybierz', { timeout: 15000 }).should('be.visible').click(); 
+      cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').click(); 
+       cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').should('have.css', 'background-color', 'rgb(0, 114, 188)');
+     
+
+    
+});
+
+it("Should find local store", () => {
+     
+  login('testcypresspwsz@gmail.com','Testcypress.12345');
+      cy.visit("https://www.komputronik.pl/order/checkout");  
+      cy.get(':nth-child(4) > .f-btn').click();
+      cy.get(':nth-child(4) > .form-modern__control > .ng-pristine').type("Nowy Sącz Węgierska");
+      cy.contains('button','Pokaż').click(); 
+      cy.contains('a','Wybierz', { timeout: 15000 }).should('be.visible').click(); 
+      cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').click(); 
+           cy.get('[ng-if="$ctrl.isPointSelected(point)"] > .f-btn').should('have.css', 'background-color', 'rgb(0, 114, 188)');
+      
+});
   
 
-  
+    // it("Delete product from cart", () => {
+          
+    //   login('testcypresspwsz@gmail.com','Testcypress.12345');
+    // cy.visit("https://www.komputronik.pl/cart");
+    //   cy.url().should('include', '/cart');
+    //   cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click(); 
+    //   cy.get('.form-default > .cart-table > .cart-table__list').should('exist');
+    //   cy.get('.cart-table__elem-remove-button > .icon').click();
+    //   cy.get('.empty-card > span').should('contain','Koszyk jest pusty', { timeout: 15000 }).should('be.visible').click();
+    //   cy.get('.form-default > .cart-table > .cart-table__list').should('not.exist');
+    // });
 
     
     })

@@ -15,7 +15,7 @@ describe('Otwieranie strony Komputronik i sprawdzenie walidacji hasła i reCaptc
 
 
 
-  it("Should register and check validation", () => {
+  it("Should register and check validation mail", () => {
     cy.visit("https://www.komputronik.pl/register");
     cy.url().should('include', '/register');
     cy.get('.col-lg-10 > .ng-valid-email').type('krzysgmail.com');
@@ -34,7 +34,25 @@ describe('Otwieranie strony Komputronik i sprawdzenie walidacji hasła i reCaptc
     cy.contains('div','Potwierdź że nie jesteś robotem').should('have.css', 'color', 'rgb(213, 0, 0)'); 
   });
     
- 
+  it("Should register and check validation password", () => {
+    cy.visit("https://www.komputronik.pl/register");
+    cy.url().should('include', '/register');
+    cy.get('.col-lg-10 > .ng-valid-email').type('krzys@gmail.com');
+    cy.get('.strength-meter-wrap > .form-control').type('krzys@gmail.com');
+    cy.get('[style="width: 304px; height: 78px;"] > div > iframe').click();
+    cy.get(':nth-child(1) > .checkbox').click();
+    cy.get('.col-md-15 > .btn > .primary').click();
+    cy.get('.col-lg-10 > .ng-valid-maxlength').should('have.css', 'color', 'rgb(85, 89, 92)');
+    cy.get('.col-lg-10 > .ng-valid-maxlength').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+    cy.get('.col-lg-10 > .ng-valid-maxlength').should('have.css', 'border-color', 'rgb(116, 195, 84)');
+    cy.get('.strength-meter-wrap > .form-control');
+    cy.get('.col-lg-10 > .ng-valid-maxlength').should('have.css', 'background-color', 'rgb(207, 255, 187)');
+    cy.get('.col-lg-10 > .ng-valid-maxlength').should('have.css', 'border-color', 'rgb(116, 195, 84)');
+    cy.contains('div','minimum 6 znaków, przynajmniej jedna cyfra i jedna litera').should('contain','minimum 6 znaków, przynajmniej jedna cyfra i jedna litera');
+    cy.contains('div','minimum 6 znaków, przynajmniej jedna cyfra i jedna litera').should('have.css', 'color', 'rgb(213, 0, 0)'); 
+    cy.contains('div','Potwierdź że nie jesteś robotem').should('contain','Potwierdź że nie jesteś robotem');
+    cy.contains('div','Potwierdź że nie jesteś robotem').should('have.css', 'color', 'rgb(213, 0, 0)'); 
+  });
 
   
 
