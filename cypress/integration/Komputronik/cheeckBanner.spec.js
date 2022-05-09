@@ -40,22 +40,22 @@ describe('Sprawdzanie banerów i elementów', () => {
 
           });
 
-          it("Main page ", () => {
+          // it("Main page ", () => {
            
-            cy.visit("https://www.komputronik.pl/");
-               //day promotion
-               cy.get(':nth-child(2) > .so2-wrap', { timeout: 15000 })
-               .should('be.visible')
-               .and('exist')
-               .and('have.css', 'width', '613px')
-               .and('have.css', 'height', '390px');
+          //   cy.visit("https://www.komputronik.pl/");
+          //      //day promotion
+          //      cy.get(':nth-child(2) > .so2-wrap', { timeout: 15000 })
+          //      .should('be.visible')
+          //      .and('exist')
+          //      .and('have.css', 'width', '613px')
+          //      .and('have.css', 'height', '390px');
    
-               cy.get(':nth-child(3) > .so2-wrap')
-               .should('exist')
-               .and('have.css', 'width', '613px')
-               .and('have.css', 'height', '390px');
+          //      cy.get(':nth-child(3) > .so2-wrap')
+          //      .should('exist')
+          //      .and('have.css', 'width', '613px')
+          //      .and('have.css', 'height', '390px');
 
-          });
+          // });
 
           it("Main page ", () => {
            

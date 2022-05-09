@@ -15,7 +15,7 @@ describe('Wyszuanie produktów', () => {
   
     
     it('Should type i find produckt', () => { 
-      cy.visit("https://www.komputronik.pl/");
+      cy.visit("https://www.komputronik.pl/category/1596/telefony.html"); 
         cy.get('.input-group').type('Xiaomi Redmi 9A 2/32GB');
         cy.get('.btn > .micon').click();
        cy.wait(5000);
