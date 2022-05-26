@@ -27,7 +27,7 @@ describe('Porównanie produktów', () => {
       cy.wait(3000);
       cy.get('.header > .caption').should('contain','Porównanie produktów');
       cy.contains('div','Samsung Galaxy S21 FE 5G 128GB Dual SIM oliwkowy (G990)').should('contain','Samsung Galaxy S21 FE 5G 128GB Dual SIM oliwkowy (G990)');
-      cy.contains('div','Samsung Galaxy S21 Ultra 5G 128GB Dual SIM czarny (G998)').should('contain','Samsung Galaxy S21 Ultra 5G 128GB Dual SIM czarny (G998)');
+      cy.contains('div','Samsung Galaxy S21 FE 5G 128GB Dual SIM lawendowy (G990)').should('contain','Samsung Galaxy S21 FE 5G 128GB Dual SIM lawendowy (G990)');
       cy.get(':nth-child(1) > h2').should('contain','Dane techniczne');
   })  
   

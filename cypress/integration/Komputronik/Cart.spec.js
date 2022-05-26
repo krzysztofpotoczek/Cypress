@@ -48,11 +48,11 @@ describe('Działanie koszyka', () => {
           .and('have.css', 'color', 'rgb(51, 51, 51)');
   
           cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-price > .at-price-0')
-          .should('contain','249 zł')
+          .should('contain','269 zł')
           .and('have.css', 'font-weight', '700');
   
           cy.get('.at-cart-summary-gross')
-          .should('contain','249 zł')
+          .should('contain','269 zł')
           .and('have.css', 'color', 'rgb(0, 151, 213)');
       });
 
@@ -67,11 +67,11 @@ describe('Działanie koszyka', () => {
          .and('have.css', 'color', 'rgb(51, 51, 51)');
   
          cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-price > .at-price-0')
-         .should('contain','249 zł')
+         .should('contain','269 zł')
          .and('have.css', 'font-weight', '700');
   
          cy.get('.at-cart-summary-gross')
-         .should('contain','249 zł')
+         .should('contain','269 zł')
          .and('have.css', 'color', 'rgb(0, 151, 213)');    
           cy.get('.chat-bubble-4gHwe12', { timeout: 15000 }).should('be.visible').click();      
           cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-qty > .flex-qty-control > .flex-qty-control__input-wrap > .flex-qty-control__input').should('have.value','1');
@@ -79,11 +79,11 @@ describe('Działanie koszyka', () => {
           cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-qty > .flex-qty-control > .flex-qty-control__action-down').click();
           
           cy.get('[ng-repeat-start="item in vm.cart.items track by $index"] > .cart-table__elem-price > .at-price-0')
-          .should('contain','249 zł')
+          .should('contain','269 zł')
           .and('have.css', 'font-weight', '700');
    
           cy.get('.at-cart-summary-gross')
-          .should('contain','498 zł')
+          .should('contain','538 zł')
           .and('have.css', 'color', 'rgb(0, 151, 213)');
   
           cy.wait(3000);

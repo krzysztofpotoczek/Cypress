@@ -28,13 +28,12 @@ describe('Wyszuanie produktów', () => {
         cy.get(':nth-child(2) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Logitech ');
         cy.get(':nth-child(3) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Logitech ');
         cy.get(':nth-child(4) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Logitech ');
-        cy.get(':nth-child(5) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Logitech ');
-        cy.get(':nth-child(1) > .pe2-head-wrap > .pe2-head > .blank-link').should('contain','Logitech ');
-        cy.get(':nth-child(1) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','319');
-        cy.get(':nth-child(2) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','319');
+       
+        cy.get(':nth-child(1) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','349');
+        cy.get(':nth-child(2) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','349');
         cy.get(':nth-child(3) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','349');
         cy.get(':nth-child(4) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','349');
-        cy.get(':nth-child(5) > .pe2-price > ktr-price > .prices > .price > .proper').should('contain','349');
+        
         cy.get(':nth-child(3) > .gf-content > .gf-checkbox-list > :nth-child(1) > .checkbox').should('have.css', 'color', 'rgb(27, 29, 30)');
         cy.get(':nth-child(2) > .gf-content > [ng-if="::($ctrl.isRangeAttribute(attribute.data_type))"] > .rz-result > :nth-child(2) > .form-control').should('not.be.empty');
   })  

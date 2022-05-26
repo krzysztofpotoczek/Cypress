@@ -7,15 +7,16 @@ describe('Pobranie użytkownika z podanym ID',() => {
     it('Get user', () => {
         cy.request({
             method : 'GET',
-            url : 'https://gorest.co.in/public/v2/users/2700',
+            url : 'https://gorest.co.in/public/v2/users/2615',
             headers: {
                 'authorization': "Bearer" + token,
               }
         }).then((res)=>{
             const gender = res.body.gender
             const name = res.body.name
+            const id = res.body.id
             expect(res.status).to.eq(200)
-            expect(res.body.id).to.eq(2700)
+            expect(res.body.id).to.eq(id)
             expect(res.body.gender).to.eq(gender)
             expect(res.body.name).to.eq(name)
             
